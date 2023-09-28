@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style1.css">
+    </head>
+    <body>
+<div class="wrapper">
+        <div class="form-left">
+            <h2 class="text-uppercase">information</h2>
+            <p>
+                By registering with DIGIHEALTH you can keep track of all your health issues and book appointments for your further requirements </p>
+            <p class="text">
+                <span>Our Motto:To Digitalize everyone in the health sector by maintaining the privacy of each individual</span>
+                
+            </p>
+            <div class="form-field">
+                <a href=logform.html><b>"Already Have an Account?"</b></a>
+            </div>
+        </div>
+        <div class="form-right">
+            <h2 class="text-uppercase">Registration form</h2>
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label>Name</label>
+                    <input type="text" name="name" id="name" class="input-field">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label>phone no</label>
+                    <input type="number" name="pno" id="pno" class="input-field">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Your Email</label>
+                <input type="email" id="email" class="input-field" name="email" required>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" class="input-field">
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label>Confirm Password</label>
+                    <input type="password" name="cpwd" id="cpwd" class="input-field">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="option">I agree to the <a href="#">Terms and Conditions</a>
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-field">
+                <button id="Register" value="Register" class="Register" name="Register">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        import { getDatabase,set,ref, update} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+    const firebaseConfig = {
+    apiKey: "AIzaSyCgvip59IbwKvULhZJV5IE19GbhHjUSky4",
+    authDomain: "healthcare-e6098.firebaseapp.com",
+    projectId: "healthcare-e6098",
+    storageBucket: "healthcare-e6098.appspot.com",
+    messagingSenderId: "165265517675",
+    appId: "1:165265517675:web:38e94cd306ab3d7810552e",
+    measurementId: "G-CCG84XY1SN"
+  };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+        Register.addEventListener('click',(e) =>{
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+
+    console.log(user);
+  })
+  .then(() => {
+  // Data saved successfully!
+  alert('Registered Successfully');
+})
+.catch((error) => {
+  // The write failed...
+  alert(error);
+});
+
+
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    // ..
+  });
+
+      </script>
+</body>
+</html>
